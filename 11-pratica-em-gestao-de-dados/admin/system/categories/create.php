@@ -14,15 +14,15 @@ endif;
         </header>
 
         <?php
-        $post = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        $data = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (!empty(['SendPostForm'])):
-            unset($post['SendPostForm']);
+            unset($data['SendPostForm']);
 
         endif;
 
         require ('_models/AdminCategory.class.php');
         $cadastro = new AdminCategory;
-        $cadastro->ExeCreate($post);
+        $cadastro->ExeCreate($data);
         if (!$cadastro->getResult()):
             WSErro($cadastro->getError()[0], $cadastro->getError()[1]);
         else:
